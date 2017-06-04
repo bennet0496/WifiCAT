@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Starter Kit</title>
+
+    <!-- Disable tap highlight on IE -->
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <!-- Web Application Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Web Starter Kit">
+    <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Web Starter Kit">
+    <link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#303F9F">
+
+    <!-- Color the status bar on mobile devices -->
+    <meta name="theme-color" content="#303F9F">
+
+    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+    <!--
+    <link rel="canonical" href="http://www.example.com/">
+    -->
+
+    <!-- Material Design icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
+    <!-- Material Design Lite page styles:
+    You can choose other color schemes from the CDN, more info here http://www.getmdl.io/customize/index.html
+    Format: material.color1-color2.min.css, some examples:
+    material.red-teal.min.css
+    material.blue-orange.min.css
+    material.purple-indigo.min.css
+    -->
+    <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
+
+    <!-- Your styles -->
+    <link rel="stylesheet" href="styles/main.css">
+  </head>
+  <body>
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header mdl-layout__header--waterfall portfolio-header">
+      <div class="mdl-layout__header-row portfolio-logo-row">
+                <span class="mdl-layout__title">
+                    <div class="portfolio-logo"></div>
+                    <span class="mdl-layout__title">Wifi Configuration Assist Tool</span>
+                </span>
+      </div>
+      <div class="mdl-layout__header-row portfolio-navigation-row mdl-layout--large-screen-only">
+        <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
+          <a class="mdl-navigation__link is-active" href="index.html">Home</a>
+          <a class="mdl-navigation__link" href="#">Contact</a>
+        </nav>
+      </div>
+    </header>
+    <div class="mdl-layout__drawer mdl-layout--small-screen-only">
+      <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
+        <a class="mdl-navigation__link is-active" href="index.html">Home</a>
+        <a class="mdl-navigation__link" href="#">Contact</a>
+      </nav>
+    </div>
+    <main class="mdl-layout__content">
+      <div class="mdl-grid portfolio-max-width">
+        <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card" id="windows-desktop">
+          <div class="mdl-card__media">
+            <img class="article-image" src=" images/windows-desktop.jpg" border="0" alt="">
+          </div>
+          <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text">Download for Windows Desktop</h2>
+          </div>
+          <div class="mdl-card__supporting-text">
+            Download the Windows tool for installing the Wifi Network.<br /> Requires .NET Framework 3.5<br/>
+          </div>
+          <div class="mdl-card__actions mdl-card--border">
+            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="#">Download</a>
+          </div>
+        </div>
+        <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+          <div class="mdl-card__media">
+            <img class="article-image" src=" images/linux.jpg" border="0" alt="">
+          </div>
+          <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text">Download for Linux</h2>
+          </div>
+          <div class="mdl-card__supporting-text">
+            Download the Linux tool for installing the Wifi Network.<br /> The tool is designed for use with Network Manager (nmcli) and WPA Supplicant
+          </div>
+          <div class="mdl-card__actions mdl-card--border">
+            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="#">Download</a>
+          </div>
+        </div>
+        <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+          <div class="mdl-card__media">
+            <img class="article-image" src=" images/apple.jpg" border="0" alt="">
+          </div>
+          <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text">Download for Mac OS X and iOS</h2>
+          </div>
+          <div class="mdl-card__supporting-text">
+            Download Apple EAP Config <br/> <br/> <br/>
+          </div>
+          <div class="mdl-card__actions mdl-card--border">
+            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="#">Download</a>
+          </div>
+        </div>
+        <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+          <div class="mdl-card__media">
+            <img class="article-image" src=" images/example-work03.jpg" border="0" alt="">
+          </div>
+          <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text">Dashboard template</h2>
+          </div>
+          <div class="mdl-card__supporting-text">
+            Enim labore aliqua consequat ut quis ad occaecat aliquip incididunt. Sunt nulla eu enim irure enim nostrud aliqua consectetur ad consectetur sunt ullamco officia. Ex officia laborum et consequat duis.
+          </div>
+          <div class="mdl-card__actions mdl-card--border">
+            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="portfolio-example01.html">Read more</a>
+          </div>
+        </div>
+        <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+          <div class="mdl-card__media">
+            <img class="article-image" src=" images/example-work04.jpg" border="0" alt="">
+          </div>
+          <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text">Text-heavy website</h2>
+          </div>
+          <div class="mdl-card__supporting-text">
+            Enim labore aliqua consequat ut quis ad occaecat aliquip incididunt. Sunt nulla eu enim irure enim nostrud aliqua consectetur ad consectetur sunt ullamco officia. Ex officia laborum et consequat duis.
+          </div>
+          <div class="mdl-card__actions mdl-card--border">
+            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="portfolio-example01.html">Read more</a>
+          </div>
+        </div>
+        <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+          <div class="mdl-card__media">
+            <img class="article-image" src=" images/example-work08.jpg" border="0" alt="">
+          </div>
+          <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text">Ex officia laborum</h2>
+          </div>
+          <div class="mdl-card__supporting-text">
+            Enim labore aliqua consequat ut quis ad occaecat aliquip incididunt. Sunt nulla eu enim irure enim nostrud aliqua consectetur ad consectetur sunt ullamco officia. Ex officia laborum et consequat duis.
+          </div>
+          <div class="mdl-card__actions mdl-card--border">
+            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="portfolio-example01.html">Read more</a>
+          </div>
+        </div>
+        <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+          <div class="mdl-card__media">
+            <img class="article-image" src=" images/example-work05.jpg" border="0" alt="">
+          </div>
+          <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text">Stand-alone article</h2>
+          </div>
+          <div class="mdl-card__supporting-text">
+            Enim labore aliqua consequat ut quis ad occaecat aliquip incididunt. Sunt nulla eu enim irure enim nostrud aliqua consectetur ad consectetur sunt ullamco officia. Ex officia laborum et consequat duis.
+          </div>
+          <div class="mdl-card__actions mdl-card--border">
+            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="portfolio-example01.html">Read more</a>
+          </div>
+        </div>
+        <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+          <div class="mdl-card__media">
+            <img class="article-image" src=" images/example-work06.jpg" border="0" alt="">
+          </div>
+          <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text">MDL website</h2>
+          </div>
+          <div class="mdl-card__supporting-text">
+            Enim labore aliqua consequat ut quis ad occaecat aliquip incididunt. Sunt nulla eu enim irure enim nostrud aliqua consectetur ad consectetur sunt ullamco officia. Ex officia laborum et consequat duis.
+          </div>
+          <div class="mdl-card__actions mdl-card--border">
+            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="portfolio-example01.html">Read more</a>
+          </div>
+        </div>
+        <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+          <div class="mdl-card__media">
+            <img class="article-image" src=" images/example-work09.jpg" border="0" alt="">
+          </div>
+          <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text">Consequat ut quis</h2>
+          </div>
+          <div class="mdl-card__supporting-text">
+            Enim labore aliqua consequat ut quis ad occaecat aliquip incididunt. Sunt nulla eu enim irure enim nostrud aliqua consectetur ad consectetur sunt ullamco officia. Ex officia laborum et consequat duis.
+          </div>
+          <div class="mdl-card__actions mdl-card--border">
+            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="portfolio-example01.html">Read more</a>
+          </div>
+        </div>
+      </div>
+      <footer class="mdl-mini-footer">
+        <div class="mdl-mini-footer__left-section">
+          <div class="mdl-logo">Simple portfolio website</div>
+        </div>
+        <div class="mdl-mini-footer__right-section">
+          <ul class="mdl-mini-footer__link-list">
+            <li><a href="#">Help</a></li>
+            <li><a href="#">Privacy & Terms</a></li>
+          </ul>
+        </div>
+      </footer>
+    </main>
+  </div>
+  <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  </body>
+  <script>
+      var OSName="Unknown OS";
+      if (navigator.appVersion.indexOf("Win") !== -1) OSName="Windows";
+      if (navigator.appVersion.indexOf("Mac") !== -1) OSName="MacOS";
+      if (navigator.appVersion.indexOf("X11") !== -1) OSName="UNIX";
+      if (navigator.appVersion.indexOf("Linux") !== -1) OSName="Linux";
+      switch (OSName){
+          case "Windows":
+              document.getElementById("windows-desktop").style.opacity = 1;
+              document.getElementById("andorid").style.opacity = 0.3;
+              document.getElementById("macos").style.opacity = 0.3;
+              document.getElementById("ios").style.opacity = 0.3;
+              //document.getElementById("windows-desktop").style.opacity = 1;
+
+      }
+  </script>
+
+</html>
