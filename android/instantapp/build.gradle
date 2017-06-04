@@ -1,0 +1,25 @@
+apply plugin: 'com.android.instantapp'
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:design:25.3.1'
+}
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion '25.0.3'
+    defaultConfig {
+        applicationId 'de.becker_dd.bennet.wificat'
+        versionCode 1
+        versionName '1.0'
+        minSdkVersion 23
+        targetSdkVersion 25
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+    }
+    productFlavors {
+    }
+}
+dependencies {
+    implementation project(':app')
+}

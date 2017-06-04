@@ -7,14 +7,16 @@ import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.pm.PackageManager;
+import android.content.Intent;
 import android.content.res.Resources;
+import android.net.wifi.SupplicantState;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiEnterpriseConfig;
 import android.net.wifi.WifiManager;
-import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
+import android.security.KeyChain;
+import android.security.KeyChainAliasCallback;
+import android.security.KeyChainException;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
 
@@ -22,7 +24,6 @@ import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.AsyncTask;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -34,35 +35,30 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import java.io.ByteArrayInputStream;
-import java.io.StringReader;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
 import java.security.NoSuchProviderException;
+import java.security.Principal;
+import java.security.PrivateKey;
+import java.security.Security;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 
-import static android.Manifest.permission.READ_CONTACTS;
-import static android.content.Context.*;
-import static android.net.wifi.WifiConfiguration.KeyMgmt.WPA_EAP;
-import static android.net.wifi.WifiEnterpriseConfig.Eap.PEAP;
+import javax.security.auth.x500.X500Principal;
 
 /**
  * A login screen that offers login via email/password.
  */
 public class LoginWifiNetwork extends AppCompatActivity implements LoaderCallbacks<Cursor> {
-
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
 
     // UI references.
     private EditText mUsernameView;
@@ -71,6 +67,8 @@ public class LoginWifiNetwork extends AppCompatActivity implements LoaderCallbac
     private View mLoginFormView;
 
     private Resources res;
+    private PrivateKey privateKey;
+    private X509Certificate[] certChain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,10 +85,27 @@ public class LoginWifiNetwork extends AppCompatActivity implements LoaderCallbac
                 if (id == R.id.login || id == EditorInfo.IME_NULL) {
                     try {
                         attemptLogin();
-                    } catch (CertificateException e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
-                    } catch (NoSuchProviderException e) {
-                        e.printStackTrace();
+                        String trace = e.toString() + "\n";
+                        for (StackTraceElement el: e.getStackTrace()) {
+                            trace += "\tat " + el.toString();
+                        }
+                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(textView.getContext());
+                        alertDialogBuilder.setTitle("Error!");
+                        alertDialogBuilder.setMessage(trace);
+                        alertDialogBuilder.setPositiveButton("Ok",
+                                new DialogInterface.OnClickListener() {
+
+                                    @Override
+                                    public void onClick(DialogInterface arg0, int arg1) {
+                                        showProgress(false);
+                                        mLoginFormView.requestFocus();
+                                        arg0.dismiss();
+                                    }
+                                });
+                        AlertDialog alertDialog = alertDialogBuilder.create();
+                        alertDialog.show();
                     }
                     return true;
                 }
@@ -98,16 +113,62 @@ public class LoginWifiNetwork extends AppCompatActivity implements LoaderCallbac
             }
         });
 
+        Button mChooseClientCertButton = (Button) findViewById(R.id.choose_cert);
+        if(res.getBoolean(R.bool.use_client_cert)) {
+            mChooseClientCertButton.setVisibility(View.VISIBLE);
+
+            mChooseClientCertButton.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (Build.VERSION.SDK_INT >= 23) {
+                        KeyChain.choosePrivateKeyAlias(LoginWifiNetwork.this, new KeyChainAliasCallback() {
+                                    @Override
+                                    public void alias(@Nullable String alias) {
+                                        try {
+                                            LoginWifiNetwork.this.privateKey = KeyChain.getPrivateKey(LoginWifiNetwork.this.getApplicationContext(), alias);
+                                            LoginWifiNetwork.this.certChain = KeyChain.getCertificateChain(LoginWifiNetwork.this.getApplicationContext(), alias);
+                                            System.out.println(LoginWifiNetwork.this.privateKey);
+                                            System.out.println(LoginWifiNetwork.this.certChain);
+                                        } catch (KeyChainException e) {
+                                            e.printStackTrace();
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                }, null,
+                                new Principal[]{new X500Principal(getString(R.string.client_cert_issuer))}, null, null);
+                    }
+                }
+            });
+        }
+
         Button mNetworkInstallButton = (Button) findViewById(R.id.install_network_button);
         mNetworkInstallButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
                     attemptLogin();
-                } catch (CertificateException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
-                } catch (NoSuchProviderException e) {
-                    e.printStackTrace();
+                    String trace = e.toString() + "\n";
+                    for (StackTraceElement el: e.getStackTrace()) {
+                        trace += "\tat " + el.toString() + "\n";
+                    }
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(view.getContext());
+                    alertDialogBuilder.setTitle("Error!");
+                    alertDialogBuilder.setMessage(trace);
+                    alertDialogBuilder.setPositiveButton("Ok",
+                            new DialogInterface.OnClickListener() {
+
+                                @Override
+                                public void onClick(DialogInterface arg0, int arg1) {
+                                    showProgress(false);
+                                    mLoginFormView.requestFocus();
+                                    arg0.dismiss();
+                                }
+                            });
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
                 }
             }
         });
@@ -116,11 +177,6 @@ public class LoginWifiNetwork extends AppCompatActivity implements LoaderCallbac
         mProgressView = findViewById(R.id.login_progress);
     }
 
-    /**
-     * Attempts to sign in or register the account specified by the login form.
-     * If there are form errors (invalid email, missing fields, etc.), the
-     * errors are presented and no actual login attempt is made.
-     */
     private void attemptLogin() throws CertificateException, NoSuchProviderException {
         // Reset errors.
         mUsernameView.setError(null);
@@ -156,8 +212,9 @@ public class LoginWifiNetwork extends AppCompatActivity implements LoaderCallbac
             // perform the user login attempt.
             showProgress(true);
 
-            @SuppressLint("WifiManagerLeak")
-            WifiManager wifi = (WifiManager) (WifiManager) getSystemService(Context.WIFI_SERVICE);
+            WifiManager wifi = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+
+
 
             WifiConfiguration configuration = new WifiConfiguration();
             WifiEnterpriseConfig enterpriseConfig = new WifiEnterpriseConfig();
@@ -169,6 +226,14 @@ public class LoginWifiNetwork extends AppCompatActivity implements LoaderCallbac
 
             enterpriseConfig.setIdentity(user);
             enterpriseConfig.setPassword(password);
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                enterpriseConfig.setAltSubjectMatch(getString(R.string.subject_alt_match));
+                enterpriseConfig.setDomainSuffixMatch(getString(R.string.dns_suffix_match));
+            }
+            if(res.getBoolean(R.bool.use_client_cert)){
+                enterpriseConfig.setClientKeyEntry(privateKey, certChain[0]);
+            }
+
 
             enterpriseConfig.setAnonymousIdentity(getString(R.string.anonymous_identity));
             enterpriseConfig.setEapMethod(res.getInteger(R.integer.eap_method));
@@ -181,22 +246,76 @@ public class LoginWifiNetwork extends AppCompatActivity implements LoaderCallbac
             int networkid = wifi.addNetwork(configuration);
             wifi.enableNetwork(networkid, true);
 
-            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-            alertDialogBuilder.setMessage("Network added successfully");
-            alertDialogBuilder.setPositiveButton("Ok",
-                    new DialogInterface.OnClickListener() {
+            boolean success = false;
 
-                        @Override
-                        public void onClick(DialogInterface arg0, int arg1) {
-                            System.exit(0);
-                        }
-                    });
+            for(int i = 0; i < 5; i++) {
+                if (wifi.getConnectionInfo().getSupplicantState() == SupplicantState.COMPLETED &&
+                        wifi.getConnectionInfo().getNetworkId() == networkid) {
+                    success = true;
+                    break;
+                }else{
+                    System.out.println("Wifi not connected. Waiting.");
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            DialogInterface.OnClickListener uninstaller = new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface arg0, int arg1) {
+                    Uri packageURI = Uri.parse("package:" + LoginWifiNetwork.class.getPackage().getName());
+                    Intent uninstallIntent = new Intent(Intent.ACTION_DELETE, packageURI);
+                    startActivity(uninstallIntent);
+                }
+            };
+            DialogInterface.OnClickListener dismiss = new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface arg0, int arg1) {
+                    showProgress(false);
+                    mLoginFormView.requestFocus();
+                    arg0.dismiss();
+                }
+            };
+
+            DialogInterface.OnClickListener exit = new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface arg0, int arg1) {
+                    System.exit(0);
+                }
+            };
+
+            if (success) {
+                alertDialogBuilder.setTitle("Done");
+                alertDialogBuilder.setMessage("Network added successfully. Do you want to uninstall the now?");
+                alertDialogBuilder.setPositiveButton("Yes", uninstaller);
+                alertDialogBuilder.setNegativeButton("No",dismiss);
+            }else{
+                alertDialogBuilder.setTitle("Done");
+                alertDialogBuilder.setMessage("Network added, but it seams the Network is not connecting");
+                alertDialogBuilder.setPositiveButton("Try again", dismiss);
+                alertDialogBuilder.setNegativeButton("Close", exit);
+                alertDialogBuilder.setNeutralButton("Uninstall App", uninstaller);
+            }
+            alertDialogBuilder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                @Override
+                public void onCancel(DialogInterface dialog) {
+                    showProgress(false);
+                    mLoginFormView.requestFocus();
+                    dialog.dismiss();
+                }
+            });
             AlertDialog alertDialog = alertDialogBuilder.create();
             alertDialog.show();
         }
     }
 
-    public static X509Certificate convertToX509Cert(String certificateString) throws CertificateException, NoSuchProviderException {
+    private static X509Certificate convertToX509Cert(String certificateString) throws CertificateException {
         X509Certificate certificate = null;
         CertificateFactory cf = null;
         try {
@@ -267,17 +386,6 @@ public class LoginWifiNetwork extends AppCompatActivity implements LoaderCallbac
     @Override
     public void onLoaderReset(Loader<Cursor> cursorLoader) {
 
-    }
-
-
-    private interface ProfileQuery {
-        String[] PROJECTION = {
-                ContactsContract.CommonDataKinds.Email.ADDRESS,
-                ContactsContract.CommonDataKinds.Email.IS_PRIMARY,
-        };
-
-        int ADDRESS = 0;
-        int IS_PRIMARY = 1;
     }
 }
 

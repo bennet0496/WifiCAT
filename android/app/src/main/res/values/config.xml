@@ -2,8 +2,7 @@
 <resources>
     <string name="SSID">sample-ssid</string>
     <string name="anonymous_identity">anonymous</string>
-    <integer name="eap_method">0</integer>
-    <integer name="phase2_method">3</integer>
+    <string name="subject_alt_match"></string>
     <string name="ca_certificate">-----BEGIN CERTIFICATE-----
 MIIDnzCCAoegAwIBAgIBJjANBgkqhkiG9w0BAQUFADBxMQswCQYDVQQGEwJERTEc
 MBoGA1UEChMTRGV1dHNjaGUgVGVsZWtvbSBBRzEfMB0GA1UECxMWVC1UZWxlU2Vj
@@ -26,4 +25,14 @@ IzpXl/V6ME+un2pMSyuOoAPjPuCp1NJ70rOo4nI8rZ7/gFnkm0W09juwzTkZmDLl
 xbrYNuSD7Odlt79jWvNGr4GUN9RBjNYj1h7P9WgbRGOiWrqnNVmh5XAFmw4jV5mU
 Cm26OWMohpLzGITY+9HPBVZkVw==
 -----END CERTIFICATE-----</string>
+    <string name="dns_suffix_match">sample-ssid.mpipks-dresden.mpg.de</string>
+
+    <bool name="use_client_cert">true</bool>
+    <string name="client_cert_issuer"></string>
+
+    <!-- https://developer.android.com/reference/android/net/wifi/WifiEnterpriseConfig.Eap.html -->
+    <integer name="eap_method">0</integer>
+
+    <!-- https://developer.android.com/reference/android/net/wifi/WifiEnterpriseConfig.Phase2.html -->
+    <integer name="phase2_method">3</integer>
 </resources>

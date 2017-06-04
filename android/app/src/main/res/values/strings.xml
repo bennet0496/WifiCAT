@@ -13,4 +13,6 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="footer_text">WifiCAT, © Bennet Becker 2017</string>
+    <string name="choose_cert">Choose Client Certifiate</string>
 </resources>

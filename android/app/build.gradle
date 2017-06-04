@@ -18,14 +18,7 @@ android {
         }
     }
     productFlavors {
-        instant {
-            minSdkVersion 23
-            applicationId 'de.becker_dd.bennet.wificat'
-            targetSdkVersion 25
-            testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
-            versionCode 1
-            versionName '1.0'
-        }
+
     }
 }
 

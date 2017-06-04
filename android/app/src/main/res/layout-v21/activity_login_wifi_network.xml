@@ -15,7 +15,7 @@
     <!-- Login progress -->
     <ProgressBar
         android:id="@+id/login_progress"
-        style="@android:style/Widget.DeviceDefault.ProgressBar.Large"
+        style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -44,10 +44,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-
+                
                 <EditText
                     android:id="@+id/username"
-                    style="@android:style/Widget.DeviceDefault.EditText"
+                    style="@android:style/Widget.Material.EditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:completionHint="@string/prompt_user"
@@ -64,7 +64,7 @@
 
                 <EditText
                     android:id="@+id/password"
-                    style="@android:style/Widget.DeviceDefault.EditText"
+                    style="@android:style/Widget.Material.EditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_password"
@@ -78,7 +78,7 @@
 
             <Button
                 android:id="@+id/choose_cert"
-                style="@android:style/Widget.Button"
+                style="@android:style/Widget.Material.Light.Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -88,7 +88,7 @@
 
             <Button
                 android:id="@+id/install_network_button"
-                style="@android:style/Widget.Button"
+                style="@android:style/Widget.Material.Light.Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
