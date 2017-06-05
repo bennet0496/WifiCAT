@@ -62,7 +62,7 @@ else
     LOGIN=${USERN}°${PASSWORD}
 fi
 
-if test -n "$(which nmcli1)"
+if test -n "$(which nmcli)"
 then
     nmcli con add type wifi con-name $SSID ifname wlp4s0 ssid $SSID
     mkdir -p $HOME/.cat_installer
