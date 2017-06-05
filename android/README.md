@@ -1,5 +1,5 @@
 # Android App for Wifi Configuration
-![screenshot](screenshot.png "App Screenshot")
+![screenshot](screenshot_500.png "App Screenshot")
 ## Build the App
 Create an Java Keystore and Key
 ```
