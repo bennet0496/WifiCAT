@@ -1,3 +1,4 @@
+*.mobileconfig
 # ---> Android
 # Built application files
 *.apk
