@@ -76,11 +76,12 @@
         <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
             <a href="#scroll-tab-windows" class="mdl-layout__tab is-active">Windows</a>
             <a href="#scroll-tab-linux" class="mdl-layout__tab">Linux</a>
-            <a href="#scroll-tab-andorid" class="mdl-layout__tab">Android</a>
+            <a href="#scroll-tab-android" class="mdl-layout__tab">Android</a>
             <a href="#scroll-tab-ios" class="mdl-layout__tab">iOS</a>
             <a href="#scroll-tab-macos" class="mdl-layout__tab">Mac OS</a>
             <a href="#scroll-tab-manual" class="mdl-layout__tab">Manual</a>
-            <a href="#scroll-tab-help" class="mdl-layout__tab" style="display: none;" id="helpbutton"></a>
+            <a href="#scroll-tab-help" class="mdl-layout__tab" id="helpbutton">&nbsp;</a>
+            <a href="#scroll-tab-imprint" class="mdl-layout__tab" id="imprint">&nbsp;</a>
         </div>
     </header>
     <main class="mdl-layout__content">
@@ -92,17 +93,17 @@
                             <h2 class="mdl-card__title-text">Download for Windows</h2>
                         </div>
                         <div class="mdl-card__supporting-text">
-                            Download the CAT Tool for Windows 7, 8.X and 10. Requires .NET Framework
+                            Download the CAT Tool for Windows 7, 8.X and 10. Requires <a href="files/dotNetFx40_Full_x86_x64.exe">.NET Framework 4.0</a>
                         </div>
                         <div class="mdl-card__actions mdl-card--border">
-                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                                Get Started
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="files/wificat_versionselect.exe">
+                                Download
                             </a>
                         </div>
                         <div class="mdl-card__menu">
-                            <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                            <a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" href="files/wificat_versionselect.exe">
                                 <i class="material-icons">cloud_download</i>
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -116,15 +117,17 @@
                             <h2 class="mdl-card__title-text">Download for Linux</h2>
                         </div>
                         <div class="mdl-card__supporting-text">
-                            Download the CAT Script for Linux. Designed for NetworkManager (with nmcli) and WPASupplicant
+                            Download the CAT Script for Linux. Designed for NetworkManager (with nmcli) and WPASupplicant<br/>
+                            The script can be run as user. You have to make it executable before running (<tt>chmod</tt>)<br/>
+                            If using WPASupplicant, please consult the manpage about usage.
                         </div>
                         <div class="mdl-card__actions mdl-card--border">
-                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="files/wificat_linux.sh">
                                 Download
                             </a>
                         </div>
                         <div class="mdl-card__menu">
-                            <a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                            <a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" href="files/wificat_linux.sh">
                                 <i class="material-icons">cloud_download</i>
                             </a>
                         </div>
@@ -132,23 +135,24 @@
                 </div>
             </div>
         </section>
-        <section class="mdl-layout__tab-panel" id="scroll-tab-andorid">
+        <section class="mdl-layout__tab-panel" id="scroll-tab-android">
             <div class="page-content">
                 <div class="mdl-grid">
                     <div class="android-card-wide dl-card-wide mdl-card mdl-shadow--2dp">
                         <div class="mdl-card__title">
-                            <h2 class="mdl-card__title-text">Download for Andorid</h2>
+                            <h2 class="mdl-card__title-text">Download for Android</h2>
                         </div>
                         <div class="mdl-card__supporting-text">
-                            Download the CAT Tool for Android 4.3 and above
+                            Download the CAT Tool for Android 4.3 and above. For Android version  4.2 and below, please use the manual installation<br/>
+                            Please keep in mind that Android 2.3.7 and below is known for having Problems with this kind of Wifi Networks.
                         </div>
                         <div class="mdl-card__actions mdl-card--border">
-                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="files/wificat_andorid_signed.apk">
                                 Download
                             </a>
                         </div>
                         <div class="mdl-card__menu">
-                            <a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                            <a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" href="files/wificat_andorid_signed.apk">
                                 <i class="material-icons">cloud_download</i>
                             </a>
                         </div>
@@ -164,15 +168,16 @@
                             <h2 class="mdl-card__title-text">Download for iOS</h2>
                         </div>
                         <div class="mdl-card__supporting-text">
-                            Download the Apple mobileconfig for iOS
+                            Download the Apple mobileconfig for iOS 8 and above.<br/>
+                            Please use manual installation for iOS 7 and blow.
                         </div>
                         <div class="mdl-card__actions mdl-card--border">
-                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                                Get Started
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="files/wifi_profile_signed.mobileconfig">
+                                Download
                             </a>
                         </div>
                         <div class="mdl-card__menu">
-                            <a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" href="files/sample-ssid_wifi_profile_signed.mobileconfig">
+                            <a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" href="files/wifi_profile_signed.mobileconfig">
                                 <i class="material-icons">cloud_download</i>
                             </a>
                         </div>
@@ -191,12 +196,12 @@
                             Download the Apple mobileconfig for macOS
                         </div>
                         <div class="mdl-card__actions mdl-card--border">
-                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="files/wifi_profile_signed.mobileconfig">
                                 Download
                             </a>
                         </div>
                         <div class="mdl-card__menu">
-                            <a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                            <a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" href="files/wifi_profile_signed.mobileconfig">
                                 <i class="material-icons">cloud_download</i>
                             </a>
                         </div>
@@ -206,6 +211,21 @@
         </section>
         <section class="mdl-layout__tab-panel" id="scroll-tab-manual">
             <div class="page-content">
+                <div class="mdl-grid">
+                    <div class="manual-card-wide dl-card-wide mdl-card mdl-shadow--2dp">
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">Welcome to WifiCAT</h2>
+                        </div>
+                        <div class="mdl-card__supporting-text">
+                            ckp
+                        </div>
+                        <div class="mdl-card__menu">
+                            <a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                                <i class="material-icons">wifi</i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
                 <div class="mdl-grid">
                     <div class="manual-card-wide dl-card-wide mdl-card mdl-shadow--2dp">
                         <div class="mdl-card__title">
@@ -279,9 +299,9 @@
                             </table>
                         </div>
                         <div class="mdl-card__menu">
-                            <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-                                <i class="material-icons">vpn_key</i>
-                            </button>
+                            <a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                                <i class="material-icons">security</i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -306,13 +326,40 @@
                 </div>
             </div>
         </section>
+        <section class="mdl-layout__tab-panel" id="scroll-tab-imprint">
+            <div class="page-content">
+                <div class="mdl-grid">
+                    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">Welcome</h2>
+                        </div>
+                        <div class="mdl-card__supporting-text">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Mauris sagittis pellentesque lacus eleifend lacinia...
+                        </div>
+                        <div class="mdl-card__actions mdl-card--border">
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                                Get Started
+                            </a>
+                        </div>
+                        <div class="mdl-card__menu">
+                            <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                                <i class="material-icons">share</i>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
     </main>
     <footer class="mdl-mini-footer">
         <div class="mdl-mini-footer__left-section">
             <div class="mdl-logo">Wifi Configuration Assistant</div>
             <ul class="mdl-mini-footer__link-list">
                 <li><a href="#" id="helplink">Help</a></li>
-                <li><a href="#">Privacy & Terms</a></li>
+                <li><a href="#" id="imprintlink">Privacy & Terms</a></li>
             </ul>
         </div>
     </footer>
@@ -322,11 +369,247 @@
 
     });
     $("#helplink").click(function () {
-        $("section").each(function (i) {
+        $(".is-active").each(function (i) {
             $(this).removeClass("is-active");
         });
         $("#scroll-tab-help").addClass("is-active");
     });
+    $("#imprintlink").click(function () {
+        $(".is-active").each(function (i) {
+            $(this).removeClass("is-active");
+        });
+        $("#scroll-tab-imprint").addClass("is-active");
+    });
+    /**
+     * JavaScript Client Detection
+     * (C) viazenetti GmbH (Christian Ludwig)
+     */
+    (function (window) {
+        {
+            var unknown = '-';
+
+            // screen
+            var screenSize = '';
+            if (screen.width) {
+                width = (screen.width) ? screen.width : '';
+                height = (screen.height) ? screen.height : '';
+                screenSize += '' + width + " x " + height;
+            }
+
+            // browser
+            var nVer = navigator.appVersion;
+            var nAgt = navigator.userAgent;
+            var browser = navigator.appName;
+            var version = '' + parseFloat(navigator.appVersion);
+            var majorVersion = parseInt(navigator.appVersion, 10);
+            var nameOffset, verOffset, ix;
+
+            // Opera
+            if ((verOffset = nAgt.indexOf('Opera')) != -1) {
+                browser = 'Opera';
+                version = nAgt.substring(verOffset + 6);
+                if ((verOffset = nAgt.indexOf('Version')) != -1) {
+                    version = nAgt.substring(verOffset + 8);
+                }
+            }
+            // Opera Next
+            if ((verOffset = nAgt.indexOf('OPR')) != -1) {
+                browser = 'Opera';
+                version = nAgt.substring(verOffset + 4);
+            }
+            // Edge
+            else if ((verOffset = nAgt.indexOf('Edge')) != -1) {
+                browser = 'Microsoft Edge';
+                version = nAgt.substring(verOffset + 5);
+            }
+            // MSIE
+            else if ((verOffset = nAgt.indexOf('MSIE')) != -1) {
+                browser = 'Microsoft Internet Explorer';
+                version = nAgt.substring(verOffset + 5);
+            }
+            // Chrome
+            else if ((verOffset = nAgt.indexOf('Chrome')) != -1) {
+                browser = 'Chrome';
+                version = nAgt.substring(verOffset + 7);
+            }
+            // Safari
+            else if ((verOffset = nAgt.indexOf('Safari')) != -1) {
+                browser = 'Safari';
+                version = nAgt.substring(verOffset + 7);
+                if ((verOffset = nAgt.indexOf('Version')) != -1) {
+                    version = nAgt.substring(verOffset + 8);
+                }
+            }
+            // Firefox
+            else if ((verOffset = nAgt.indexOf('Firefox')) != -1) {
+                browser = 'Firefox';
+                version = nAgt.substring(verOffset + 8);
+            }
+            // MSIE 11+
+            else if (nAgt.indexOf('Trident/') != -1) {
+                browser = 'Microsoft Internet Explorer';
+                version = nAgt.substring(nAgt.indexOf('rv:') + 3);
+            }
+            // Other browsers
+            else if ((nameOffset = nAgt.lastIndexOf(' ') + 1) < (verOffset = nAgt.lastIndexOf('/'))) {
+                browser = nAgt.substring(nameOffset, verOffset);
+                version = nAgt.substring(verOffset + 1);
+                if (browser.toLowerCase() == browser.toUpperCase()) {
+                    browser = navigator.appName;
+                }
+            }
+            // trim the version string
+            if ((ix = version.indexOf(';')) != -1) version = version.substring(0, ix);
+            if ((ix = version.indexOf(' ')) != -1) version = version.substring(0, ix);
+            if ((ix = version.indexOf(')')) != -1) version = version.substring(0, ix);
+
+            majorVersion = parseInt('' + version, 10);
+            if (isNaN(majorVersion)) {
+                version = '' + parseFloat(navigator.appVersion);
+                majorVersion = parseInt(navigator.appVersion, 10);
+            }
+
+            // mobile version
+            var mobile = /Mobile|mini|Fennec|Android|iP(ad|od|hone)/.test(nVer);
+
+            // cookie
+            var cookieEnabled = (navigator.cookieEnabled) ? true : false;
+
+            if (typeof navigator.cookieEnabled == 'undefined' && !cookieEnabled) {
+                document.cookie = 'testcookie';
+                cookieEnabled = (document.cookie.indexOf('testcookie') != -1) ? true : false;
+            }
+
+            // system
+            var os = unknown;
+            var clientStrings = [
+                {s:'Windows 10', r:/(Windows 10.0|Windows NT 10.0)/},
+                {s:'Windows 8.1', r:/(Windows 8.1|Windows NT 6.3)/},
+                {s:'Windows 8', r:/(Windows 8|Windows NT 6.2)/},
+                {s:'Windows 7', r:/(Windows 7|Windows NT 6.1)/},
+                {s:'Windows Vista', r:/Windows NT 6.0/},
+                {s:'Windows Server 2003', r:/Windows NT 5.2/},
+                {s:'Windows XP', r:/(Windows NT 5.1|Windows XP)/},
+                {s:'Windows 2000', r:/(Windows NT 5.0|Windows 2000)/},
+                {s:'Windows ME', r:/(Win 9x 4.90|Windows ME)/},
+                {s:'Windows 98', r:/(Windows 98|Win98)/},
+                {s:'Windows 95', r:/(Windows 95|Win95|Windows_95)/},
+                {s:'Windows NT 4.0', r:/(Windows NT 4.0|WinNT4.0|WinNT|Windows NT)/},
+                {s:'Windows CE', r:/Windows CE/},
+                {s:'Windows 3.11', r:/Win16/},
+                {s:'Android', r:/Android/},
+                {s:'Open BSD', r:/OpenBSD/},
+                {s:'Sun OS', r:/SunOS/},
+                {s:'Linux', r:/(Linux|X11)/},
+                {s:'iOS', r:/(iPhone|iPad|iPod)/},
+                {s:'Mac OS X', r:/Mac OS X/},
+                {s:'Mac OS', r:/(MacPPC|MacIntel|Mac_PowerPC|Macintosh)/},
+                {s:'QNX', r:/QNX/},
+                {s:'UNIX', r:/UNIX/},
+                {s:'BeOS', r:/BeOS/},
+                {s:'OS/2', r:/OS\/2/},
+                {s:'Search Bot', r:/(nuhk|Googlebot|Yammybot|Openbot|Slurp|MSNBot|Ask Jeeves\/Teoma|ia_archiver)/}
+            ];
+            for (var id in clientStrings) {
+                var cs = clientStrings[id];
+                if (cs.r.test(nAgt)) {
+                    os = cs.s;
+                    break;
+                }
+            }
+
+            var osVersion = unknown;
+
+            if (/Windows/.test(os)) {
+                osVersion = /Windows (.*)/.exec(os)[1];
+                os = 'Windows';
+            }
+
+            switch (os) {
+                case 'Mac OS X':
+                    osVersion = /Mac OS X (10[\.\_\d]+)/.exec(nAgt)[1];
+                    break;
+
+                case 'Android':
+                    osVersion = /Android ([\.\_\d]+)/.exec(nAgt)[1];
+                    break;
+
+                case 'iOS':
+                    osVersion = /OS (\d+)_(\d+)_?(\d+)?/.exec(nVer);
+                    osVersion = osVersion[1] + '.' + osVersion[2] + '.' + (osVersion[3] | 0);
+                    break;
+            }
+
+            // flash (you'll need to include swfobject)
+            /* script src="//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js" */
+            var flashVersion = 'no check';
+            if (typeof swfobject != 'undefined') {
+                var fv = swfobject.getFlashPlayerVersion();
+                if (fv.major > 0) {
+                    flashVersion = fv.major + '.' + fv.minor + ' r' + fv.release;
+                }
+                else  {
+                    flashVersion = unknown;
+                }
+            }
+        }
+
+        window.jscd = {
+            screen: screenSize,
+            browser: browser,
+            browserVersion: version,
+            browserMajorVersion: majorVersion,
+            mobile: mobile,
+            os: os,
+            osVersion: osVersion,
+            cookies: cookieEnabled,
+            flashVersion: flashVersion
+        };
+    }(this));
+
+
+
+$(document).ready(function () {
+    $(".is-active").each(function (i) {
+        $(this).removeClass("is-active");
+    });
+    switch (jscd.os) {
+        case "Windows 10":
+        case "Windows 8.1":
+        case "Windows 8":
+        case "Windows 7":
+        case "Windows Vista":
+            $("#scroll-tab-windows").addClass("is-active");
+            break;
+        case "Android":
+            $("#scroll-tab-android").addClass("is-active");
+            break;
+        case "Linux":
+            $("#scroll-tab-linux").addClass("is-active");
+            break;
+        case "iOS":
+            $("#scroll-tab-ios").addClass("is-active");
+            break;
+        case "Mac OS":
+        case "Mac OS X":
+            $("#scroll-tab-macos").addClass("is-active");
+            break;
+        default:
+            $("#scroll-tab-manual").addClass("is-active");
+    }
+    if(screen.availHeight < 1000){
+        $("footer").fadeOut();
+    }else{
+        $("footer").fadeIn();
+    }
+});
+$(window).resize(function () {
+    if(screen.availHeight < 1000){
+        $("footer").fadeOut();
+    }else{
+        $("footer").fadeIn();
+    }
+})
 </script>
 </body>
 </html>
