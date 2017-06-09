@@ -27,7 +27,7 @@ Cm26OWMohpLzGITY+9HPBVZkVw==
 -----END CERTIFICATE-----</string>
     <string name="dns_suffix_match">sample-ssid.mpipks-dresden.mpg.de</string>
 
-    <bool name="use_client_cert">true</bool>
+    <bool name="use_client_cert">false</bool>
     <string name="client_cert_issuer"></string>
 
     <!-- https://developer.android.com/reference/android/net/wifi/WifiEnterpriseConfig.Eap.html -->
@@ -35,4 +35,80 @@ Cm26OWMohpLzGITY+9HPBVZkVw==
 
     <!-- https://developer.android.com/reference/android/net/wifi/WifiEnterpriseConfig.Phase2.html -->
     <integer name="phase2_method">3</integer>
+
+    <bool name="disallow_root">true</bool>
+    <bool name="require_pin">true</bool>
+    <bool name="reputable_brand_required">true</bool>
+
+    <string-array name="allowed_brands">
+        <item>Acer</item>
+        <item>Asus</item>
+        <item>AT&amp;T</item>
+        <item>Audi AG</item>
+        <item>Bang &amp; Olufsen</item>
+        <item>BenQ</item>
+        <item>Best Buy</item>
+        <item>Bigben</item>
+        <item>BlackBerry</item>
+        <item>Blaupunkt</item>
+        <item>British Telecom</item>
+        <item>Casio</item>
+        <item>Cherry Mobile</item>
+        <item>Cisco</item>
+        <item>Dell</item>
+        <item>Fairphone</item>
+        <item>Fujitsu</item>
+        <item>Garmin</item>
+        <item>Gigabyte</item>
+        <item>Gigaset</item>
+        <item>Google</item>
+        <item>Honda</item>
+        <item>HP</item>
+        <item>HTC</item>
+        <item>Huawei</item>
+        <item>Intel</item>
+        <item>Kodak</item>
+        <item>Lenovo</item>
+        <item>LGE</item>
+        <item>Logitech</item>
+        <item>Medion</item>
+        <item>Motorola</item>
+        <item>Motorola Solutions</item>
+        <item>MotorolaSolutionsInc.</item>
+        <item>MSI</item>
+        <item>Nextbit</item>
+        <item>NEC</item>
+        <item>Nikon</item>
+        <item>Nokia</item>
+        <item>NVidia</item>
+        <item>NVIDIA</item>
+        <item>Odys</item>
+        <item>OnePlus</item>
+        <item>Oppo</item>
+        <item>Orange</item>
+        <item>Panasonic</item>
+        <item>Philips</item>
+        <item>Pioneer</item>
+        <item>Razer</item>
+        <item>Samsung</item>
+        <item>Sharp</item>
+        <item>Sony</item>
+        <item>Sony Ericsson</item>
+        <item>Sprint</item>
+        <item>T-Mobile</item>
+        <item>Technicolor</item>
+        <item>Thomson</item>
+        <item>Toshiba</item>
+        <item>Trekstor</item>
+        <item>VAIO</item>
+        <item>Vestel</item>
+        <item>ViewSonic</item>
+        <item>Vivo</item>
+        <item>Vodafone</item>
+        <item>WACOM</item>
+        <item>Wiko</item>
+        <item>Xiaomi</item>
+        <item>YotaPhone</item>
+        <item>ZTE</item>
+    </string-array>
 </resources>

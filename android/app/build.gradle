@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     signingConfigs {
         config {
-            keyAlias 'signing'
+            keyAlias '1'
             keyPassword 'eicheingei9IdooJ0eraequei5ahcief'
             storeFile file('wificat.keystore')
             storePassword 'eicheingei9IdooJ0eraequei5ahcief'
@@ -20,6 +20,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.config
         versionNameSuffix '+git'
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -40,5 +41,11 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.android.support:support-v4:25.3.1'
+    compile 'com.android.support:support-vector-drawable:25.3.1'
+    compile 'com.scottyab:rootbeer-lib:0.0.6'
+    compile 'com.jaredrummler:android-device-names:1.1.3'
+
     testCompile 'junit:junit:4.12'
 }

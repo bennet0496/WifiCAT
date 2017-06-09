@@ -15,4 +15,14 @@
     </string>
     <string name="footer_text">WifiCAT, © Bennet Becker 2017</string>
     <string name="choose_cert">Choose Client Certifiate</string>
+    <string name="title_activity_settings">Settings</string>
+
+
+    <string name="msg_no_pin">Your device has no Security Method configured which is not allowed with this App and Network. Sorry ☹️</string>
+    <string name="msg_not_trusted">Your device is not eligible for use with this App and Network. Sorry ☹️</string>
+    <string name="msg_rooted_device">We detected your device is rooted. Due to security concerns this disallows the usage of this App and Wifi network. Sorry ☹️</string>
+    <string name="msg_snap">Oh Snap! 😨</string>
+    <string name="open_settings">Open Settings</string>
+    <string name="info">Info</string>
+    <string name="appinfo" />
 </resources>

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wifi Configuration Assistant</title>
+
+    <link rel="stylesheet" href="{{ 'css/material.min.css'|staticfile }}">
+    <script src="{{ 'js/material.min.js'|staticfile }}"></script>
+    <script src="{{ 'js/jquery.min.js'|staticfile }}"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .mdl-grid{
+            max-width: 900px;
+        }
+        .page-content{
+            padding-top: 2%;
+        }
+        .dl-card-wide.mdl-card {
+            width: 900px;
+        }
+        .general-card-wide > .mdl-card__title {
+            color: #fff;
+            height: 176px;
+            background: url("{{ 'img/manual.jpg'|staticfile }}") center / cover;
+        }
+        .windows-card-wide > .mdl-card__title {
+            color: #fff;
+            height: 176px;
+            background: url("{{ 'img/windows.jpg'|staticfile }}") center / cover;
+        }
+        .android-card-wide > .mdl-card__title {
+            color: #fff;
+            height: 176px;
+            background: url("{{ 'img/android.jpg'|staticfile }}") center / cover;
+        }
+        .linux-card-wide > .mdl-card__title {
+            color: #fff;
+            height: 176px;
+            background: url("{{ 'img/linux.jpg'|staticfile }}") center / cover;
+        }
+        .macos-card-wide > .mdl-card__title {
+            color: #fff;
+            height: 176px;
+            background: url("{{ 'img/macos.jpg'|staticfile }}") center / cover;
+        }
+        .ios-card-wide > .mdl-card__title {
+            color: #fff;
+            height: 176px;
+            background: url("{{ 'img/ios.jpg'|staticfile }}") center / cover;
+        }
+
+        .dl-card-wide > .mdl-card__menu {
+            color: #fff;
+        }
+        .mdl-textfield > textarea {
+            width: 620px;
+        }
+
+    </style>
+</head>
+<body>
+<!-- Simple header with scrollable tabs. -->
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header mdl-layout__header--waterfall .ripple">
+        <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <span class="mdl-layout-title">Wifi Configuration Assistant Configurator</span>
+        </div>
+        <!-- Tabs -->
+        <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+            <a href="#scroll-tab-general" class="mdl-layout__tab is-active">General Setting</a>
+            <a href="#scroll-tab-paths" class="mdl-layout__tab">Paths</a>
+            <a href="#scroll-tab-create" class="mdl-layout__tab">Create</a>
+        </div>
+    </header>
+    <main class="mdl-layout__content">
+        <section class="mdl-layout__tab-panel is-active" id="scroll-tab-general">
+            <div class="page-content">
+                <div class="mdl-grid">
+                    <div class="general-card-wide dl-card-wide mdl-card mdl-shadow--2dp">
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">General Settings Settings</h2>
+                        </div>
+
+                        <div class="mdl-card__supporting-text">
+                            <form action="WifiConfig.set_gerneral_settings" id="form" data-bind="true">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                  <input class="mdl-textfield__input" type="text" id="ssid" name="ssid">
+                                  <label class="mdl-textfield__label" for="ssid">SSID</label>
+                                </div>
+                                <h6>WPA Method</h6>
+                                <ul class="demo-list-control mdl-list">
+                                    <li class="mdl-list__item mdl-list__item--two-line">
+                                        <span class="mdl-list__item-primary-content">
+                                          <i class="material-icons  mdl-list__item-avatar">wifi_secure</i>
+                                            <span>WPA</span>
+                                            <span class="mdl-list__item-sub-title">Not implemented Yet</span>
+                                        </span>
+                                        <span class="mdl-list__item-secondary-action">
+                                          <label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="list-option-1">
+                                            <input type="radio" id="list-option-1" class="mdl-radio__button" name="wpa" value="1" disabled />
+                                          </label>
+                                        </span>
+                                      </li>
+                                    <li class="mdl-list__item">
+                                        <span class="mdl-list__item-primary-content">
+                                          <i class="material-icons  mdl-list__item-avatar">wifi_secure</i>
+                                          WPA 2
+                                        </span>
+                                        <span class="mdl-list__item-secondary-action">
+                                          <label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="list-option-2">
+                                            <input type="radio" id="list-option-2" class="mdl-radio__button" name="wpa" value="2" checked />
+                                          </label>
+                                        </span>
+                                      </li>
+                                </ul>
+                                <br />
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                  <input class="mdl-textfield__input" type="text" id="anonymousid" name="anonymousid">
+                                  <label class="mdl-textfield__label" for="anonymousid">Anonymous Identity</label>
+                                </div>
+                                <br/>
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                  <input class="mdl-textfield__input" type="text" id="sujaltmatch" name="sujaltmatch">
+                                  <label class="mdl-textfield__label" for="sujaltmatch">Subject Alternate Name Match</label>
+                                </div>
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                  <input class="mdl-textfield__input" type="text" id="dnssuffmatch" name="dnssuffmatch">
+                                  <label class="mdl-textfield__label" for="dnssuffmatch">DNS Suffix Match</label>
+                                </div>
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 620px;">
+                                  <textarea class="mdl-textfield__input" type="text" rows= "10" id="cacert" name="cacert" ></textarea>
+                                  <label class="mdl-textfield__label" for="cacert">Root CA Certificate</label>
+                                </div>
+                                <h6>EAP Method</h6>
+                                <ul class="eap-list-control mdl-list">
+                                  <li class="mdl-list__item">
+                                    <span class="mdl-list__item-primary-content">
+                                      <i class="material-icons  mdl-list__item-avatar">security</i>
+                                      <span>Protected Extensible Authentication Protocol</span>
+                                    </span>
+                                    <span class="mdl-list__item-secondary-action">
+                                      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="peap">
+                                        <input type="checkbox" id="peap" class="mdl-checkbox__input" name="peap" checked />
+                                      </label>
+                                    </span>
+                                  </li>
+                                    <li class="mdl-list__item">
+                                    <span class="mdl-list__item-primary-content">
+                                      <i class="material-icons  mdl-list__item-avatar">security</i>
+                                      <span>Lightweight Extensible Authentication Protocol</span>
+                                    </span>
+                                    <span class="mdl-list__item-secondary-action">
+                                      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="leap">
+                                        <input type="checkbox" id="leap" class="mdl-checkbox__input" name="leap"  />
+                                      </label>
+                                    </span>
+                                  </li>
+                                    <li class="mdl-list__item">
+                                    <span class="mdl-list__item-primary-content">
+                                      <i class="material-icons  mdl-list__item-avatar">security</i>
+                                      <span>Message Digest 5</span>
+                                    </span>
+                                    <span class="mdl-list__item-secondary-action">
+                                      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-3">
+                                        <input type="checkbox" id="list-checkbox-3" class="mdl-checkbox__input" name="md5"  />
+                                      </label>
+                                    </span>
+                                  </li>
+                                    <li class="mdl-list__item mdl-list__item--two-line">
+                                    <span class="mdl-list__item-primary-content">
+                                      <i class="material-icons  mdl-list__item-avatar">security</i>
+                                      <span>Transport Layer Security</span>
+                                        <span class="mdl-list__item-sub-title">Not implemented Yet</span>
+
+                                    </span>
+                                    <span class="mdl-list__item-secondary-action">
+                                      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-4">
+                                        <input type="checkbox" id="list-checkbox-4" class="mdl-checkbox__input" name="tls" disabled />
+                                      </label>
+                                    </span>
+                                  </li>
+                                    <li class="mdl-list__item mdl-list__item--two-line">
+                                    <span class="mdl-list__item-primary-content">
+                                      <i class="material-icons  mdl-list__item-avatar">security</i>
+                                      <span>Tunneled Transport Layer Security</span>
+                                        <span class="mdl-list__item-sub-title">Not implemented Yet</span>
+                                    </span>
+                                    <span class="mdl-list__item-secondary-action">
+                                      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-5">
+                                        <input type="checkbox" id="list-checkbox-5" class="mdl-checkbox__input" name="ttls" disabled />
+                                      </label>
+                                    </span>
+                                  </li>
+                                    <li class="mdl-list__item mdl-list__item--two-line">
+                                    <span class="mdl-list__item-primary-content">
+                                      <i class="material-icons  mdl-list__item-avatar">security</i>
+                                      <span>Password</span>
+                                        <span class="mdl-list__item-sub-title">Not implemented Yet</span>
+                                    </span>
+                                    <span class="mdl-list__item-secondary-action">
+                                      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-6">
+                                        <input type="checkbox" id="list-checkbox-6" class="mdl-checkbox__input" name="pwd" disabled />
+                                      </label>
+                                    </span>
+                                  </li>
+                                    <li class="mdl-list__item">
+                                    <span class="mdl-list__item-primary-content">
+                                      <i class="material-icons  mdl-list__item-avatar">security</i>
+                                      <span>Extensible Authentication Protocol Flexible Authentication via Secure Tunneling</span>
+                                    </span>
+                                    <span class="mdl-list__item-secondary-action">
+                                      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-7">
+                                        <input type="checkbox" id="list-checkbox-7" class="mdl-checkbox__input" name="fast"/>
+                                      </label>
+                                    </span>
+                                  </li>
+                                </ul>
+                            </form>
+                        </div>
+                        <div class="mdl-card__actions mdl-card--border">
+                            <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" formaction="submit" form="form">
+                                Save
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="scroll-tab-paths">
+            <div class="page-content">
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--8-col">
+                        <div class="linux-card-wide dl-card-wide mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title">
+                                <h2 class="mdl-card__title-text">Linux Script Path</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--8-col">
+                        <div class="windows-card-wide dl-card-wide mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title">
+                                <h2 class="mdl-card__title-text">Windows Tool Path</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--8-col">
+                        <div class="android-card-wide dl-card-wide mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title">
+                                <h2 class="mdl-card__title-text">Android App Path</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--8-col">
+                        <div class="ios-card-wide dl-card-wide mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title">
+                                <h2 class="mdl-card__title-text">Apple Config Path</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="scroll-tab-create">
+            <div class="page-content">
+                <div class="mdl-grid">
+                    <div class="general-card-wide dl-card-wide mdl-card mdl-shadow--2dp">
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">Finish</h2>
+                        </div>
+                        <div class="mdl-card__supporting-text">
+                            Download the CAT Tool for Android 4.3 and above
+                        </div>
+                        <div class="mdl-card__actions mdl-card--border">
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                                Generate
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+<script>
+
+</script>
+</body>
+</html>

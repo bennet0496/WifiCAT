@@ -2,7 +2,6 @@ package de.becker_dd.bennet.wificat;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -27,11 +26,14 @@ import android.net.Uri;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 
 import android.util.Base64;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
@@ -40,25 +42,21 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.io.ByteArrayInputStream;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
 import java.security.NoSuchProviderException;
 import java.security.Principal;
 import java.security.PrivateKey;
-import java.security.Security;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.List;
 
 import javax.security.auth.x500.X500Principal;
+
+import static android.support.v7.app.AlertDialog.*;
 
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginWifiNetwork extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+public class LoginWifiNetworkActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
 
     // UI references.
     private EditText mUsernameView;
@@ -121,14 +119,14 @@ public class LoginWifiNetwork extends AppCompatActivity implements LoaderCallbac
                 @Override
                 public void onClick(View view) {
                     if (Build.VERSION.SDK_INT >= 23) {
-                        KeyChain.choosePrivateKeyAlias(LoginWifiNetwork.this, new KeyChainAliasCallback() {
+                        KeyChain.choosePrivateKeyAlias(LoginWifiNetworkActivity.this, new KeyChainAliasCallback() {
                                     @Override
                                     public void alias(@Nullable String alias) {
                                         try {
-                                            LoginWifiNetwork.this.privateKey = KeyChain.getPrivateKey(LoginWifiNetwork.this.getApplicationContext(), alias);
-                                            LoginWifiNetwork.this.certChain = KeyChain.getCertificateChain(LoginWifiNetwork.this.getApplicationContext(), alias);
-                                            System.out.println(LoginWifiNetwork.this.privateKey);
-                                            System.out.println(LoginWifiNetwork.this.certChain);
+                                            LoginWifiNetworkActivity.this.privateKey = KeyChain.getPrivateKey(LoginWifiNetworkActivity.this.getApplicationContext(), alias);
+                                            LoginWifiNetworkActivity.this.certChain = KeyChain.getCertificateChain(LoginWifiNetworkActivity.this.getApplicationContext(), alias);
+                                            System.out.println(LoginWifiNetworkActivity.this.privateKey);
+                                            System.out.println(LoginWifiNetworkActivity.this.certChain);
                                         } catch (KeyChainException e) {
                                             e.printStackTrace();
                                         } catch (InterruptedException e) {
@@ -268,7 +266,7 @@ public class LoginWifiNetwork extends AppCompatActivity implements LoaderCallbac
 
                 @Override
                 public void onClick(DialogInterface arg0, int arg1) {
-                    Uri packageURI = Uri.parse("package:" + LoginWifiNetwork.class.getPackage().getName());
+                    Uri packageURI = Uri.parse("package:" + LoginWifiNetworkActivity.class.getPackage().getName());
                     Intent uninstallIntent = new Intent(Intent.ACTION_DELETE, packageURI);
                     startActivity(uninstallIntent);
                 }
@@ -387,5 +385,37 @@ public class LoginWifiNetwork extends AppCompatActivity implements LoaderCallbac
     public void onLoaderReset(Loader<Cursor> cursorLoader) {
 
     }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+           case R.id.action_info:
+               Builder ad = new Builder(mLoginFormView.getContext());
+               ad.setMessage(getString(R.string.appinfo));
+               ad.setIcon(R.drawable.ic_info_black_24dp);
+               ad.setNeutralButton("Close", new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
+                       dialog.dismiss();
+                   }
+               });
+
+               ad.show();
+               return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+               // Invoke the superclass to handle it.
+               return super.onOptionsItemSelected(item);
+
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.topmenu, menu);
+        return true;
+    }
+
 }
 

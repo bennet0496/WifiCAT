@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="de.becker_dd.bennet.wificat.LoginWifiNetwork"
+    tools:context="de.becker_dd.bennet.wificat.LoginWifiNetworkActivity"
     android:weightSum="1">
 
     <!-- Login progress -->
