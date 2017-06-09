@@ -79,7 +79,7 @@
             <a href="#scroll-tab-android" class="mdl-layout__tab">Android</a>
             <a href="#scroll-tab-ios" class="mdl-layout__tab">iOS</a>
             <a href="#scroll-tab-macos" class="mdl-layout__tab">Mac OS</a>
-            <a href="#scroll-tab-manual" class="mdl-layout__tab">Manual</a>
+            <a href="#scroll-tab-manual" class="mdl-layout__tab" id="manual_button">Manual</a>
             <a href="#scroll-tab-help" class="mdl-layout__tab" id="helpbutton">&nbsp;</a>
             <a href="#scroll-tab-imprint" class="mdl-layout__tab" id="imprint">&nbsp;</a>
         </div>
@@ -212,12 +212,12 @@
         <section class="mdl-layout__tab-panel" id="scroll-tab-manual">
             <div class="page-content">
                 <div class="mdl-grid">
-                    <div class="manual-card-wide dl-card-wide mdl-card mdl-shadow--2dp">
+                    <div class="manual-card-wide dl-card-wide mdl-card mdl-shadow--2dp" id="welcome">
                         <div class="mdl-card__title">
                             <h2 class="mdl-card__title-text">Welcome to WifiCAT</h2>
                         </div>
                         <div class="mdl-card__supporting-text">
-                            ckp
+                            Please select the Tab for your OS or set it up manually using the values below.
                         </div>
                         <div class="mdl-card__menu">
                             <a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
@@ -609,6 +609,9 @@ $(window).resize(function () {
     }else{
         $("footer").fadeIn();
     }
+});
+$("#manual_button").click(function () {
+    $("#welcome").remove();
 })
 </script>
 </body>
