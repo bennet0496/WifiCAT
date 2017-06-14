@@ -11,3 +11,10 @@ Now Build the App using `gradlew`
 ```
 ./gradlew assemble
 ```
+
+## License
+the source code is licenced under AGPL v3.0
+
+### External Work
+the project uses RootBeer, by scottyab licensed under an Apache-2 license, as an external build
+dependency.
