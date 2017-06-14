@@ -3,4 +3,4 @@
 	url = https://github.com/bennet0496/WifiCAT-Windows.git
 [submodule "builder"]
 	path = builder
-	url = https://git.becker-dd.de/bennet/WifiCAT-Builder.git
+	url = https://github.com/bennet0496/WifiCAT-Builder.git
