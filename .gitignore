@@ -1,3 +1,4 @@
+*.mobileconfig
 # ---> Android
 # Built application files
 *.apk
@@ -52,7 +53,7 @@ hs_err_pid*
 *.iml
 
 ## Directory-based project format:
-.idea/
+# .idea/
 # if you remove the above rule, at least ignore the following:
 
 # User-specific stuff:
@@ -61,15 +62,15 @@ hs_err_pid*
 # .idea/dictionaries
 
 # Sensitive or high-churn files:
-# .idea/dataSources.ids
-# .idea/dataSources.xml
-# .idea/sqlDataSources.xml
+.idea/dataSources.ids
+.idea/dataSources.xml
+.idea/sqlDataSources.xml
 # .idea/dynamic.xml
-# .idea/uiDesigner.xml
+.idea/uiDesigner.xml
 
 # Gradle:
-# .idea/gradle.xml
-# .idea/libraries
+.idea/gradle.xml
+.idea/libraries
 
 # Mongo Explorer plugin:
 # .idea/mongoSettings.xml
@@ -94,3 +95,14 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 
+*.iml
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+
+android/app/wificat.keystore
