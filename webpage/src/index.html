@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wifi Configuration Assistant</title>
+
+    <link rel="stylesheet" href="./material.min.css">
+    <script src="./material.min.js"></script>
+    <link type="text/css" href="ripple.min.css">
+    <script src="jquery.min.js"></script>
+    <script src="ripple.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .mdl-grid{
+            max-width: 900px;
+        }
+        .page-content{
+            padding-top: 2%;
+        }
+        .dl-card-wide.mdl-card {
+            width: 900px;
+        }
+        .windows-card-wide > .mdl-card__title {
+            color: #fff;
+            height: 176px;
+            background: url('images/windows.jpg') center / cover;
+        }
+        .android-card-wide > .mdl-card__title {
+            color: #fff;
+            height: 176px;
+            background: url('images/android.jpg') center / cover;
+        }
+        .linux-card-wide > .mdl-card__title {
+            color: #fff;
+            height: 176px;
+            background: url('images/linux.jpg') center / cover;
+        }
+        .macos-card-wide > .mdl-card__title {
+            color: #fff;
+            height: 176px;
+            background: url('images/macos.jpg') center / cover;
+        }
+        .ios-card-wide > .mdl-card__title {
+            color: #fff;
+            height: 176px;
+            background: url('images/ios.jpg') center / cover;
+        }
+        .manual-card-wide > .mdl-card__title {
+            color: #fff;
+            height: 176px;
+            background: url('images/manual.jpg') center / cover;
+        }
+        .dl-card-wide > .mdl-card__menu {
+            color: #fff;
+        }
+        .card-square.mdl-card {
+            width: 320px;
+            height: 320px;
+        }
+        .mail-card-square > .mdl-card__title {
+            color: #fff;
+            background: url('images/mail.gif') center / cover;
+        }
+    </style>
+</head>
+<body>
+<!-- Simple header with scrollable tabs. -->
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header mdl-layout__header--waterfall .ripple">
+        <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <span class="mdl-layout-title">Wifi Configuration Assistant</span>
+        </div>
+        <!-- Tabs -->
+        <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+            <a href="#scroll-tab-windows" class="mdl-layout__tab is-active">Windows</a>
+            <a href="#scroll-tab-linux" class="mdl-layout__tab">Linux</a>
+            <a href="#scroll-tab-android" class="mdl-layout__tab">Android</a>
+            <a href="#scroll-tab-ios" class="mdl-layout__tab">iOS</a>
+            <a href="#scroll-tab-macos" class="mdl-layout__tab">Mac OS</a>
+            <a href="#scroll-tab-manual" class="mdl-layout__tab" id="manual_button">Manual</a>
+            <a href="#scroll-tab-help" class="mdl-layout__tab" id="helpbutton">&nbsp;</a>
+            <a href="#scroll-tab-imprint" class="mdl-layout__tab" id="imprint">&nbsp;</a>
+        </div>
+    </header>
+    <main class="mdl-layout__content">
+        <section class="mdl-layout__tab-panel is-active" id="scroll-tab-windows">
+            <div class="page-content">
+                <div class="mdl-grid">
+                    <div class="windows-card-wide dl-card-wide mdl-card mdl-shadow--2dp">
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">Download for Windows</h2>
+                        </div>
+                        <div class="mdl-card__supporting-text">
+                            Download the CAT Tool for Windows 7, 8.X and 10. Requires <a href="files/dotNetFx40_Full_x86_x64.exe">.NET Framework 4.0</a>
+                        </div>
+                        <div class="mdl-card__actions mdl-card--border">
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="files/wificat_versionselect.exe">
+                                Download
+                            </a>
+                        </div>
+                        <div class="mdl-card__menu">
+                            <a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" href="files/wificat_versionselect.exe">
+                                <i class="material-icons">cloud_download</i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="scroll-tab-linux">
+            <div class="page-content">
+                <div class="mdl-grid">
+                    <div class="linux-card-wide dl-card-wide mdl-card mdl-shadow--2dp">
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">Download for Linux</h2>
+                        </div>
+                        <div class="mdl-card__supporting-text">
+                            Download the CAT Script for Linux. Designed for NetworkManager (with nmcli) and WPASupplicant<br/>
+                            The script can be run as user. You have to make it executable before running (<tt>chmod</tt>)<br/>
+                            If using WPASupplicant, please consult the manpage about usage.
+                        </div>
+                        <div class="mdl-card__actions mdl-card--border">
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="files/wificat_linux.sh">
+                                Download
+                            </a>
+                        </div>
+                        <div class="mdl-card__menu">
+                            <a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" href="files/wificat_linux.sh">
+                                <i class="material-icons">cloud_download</i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="scroll-tab-android">
+            <div class="page-content">
+                <div class="mdl-grid">
+                    <div class="android-card-wide dl-card-wide mdl-card mdl-shadow--2dp">
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">Download for Android</h2>
+                        </div>
+                        <div class="mdl-card__supporting-text">
+                            Download the CAT Tool for Android 4.3 and above. For Android version  4.2 and below, please use the manual installation<br/>
+                            Please keep in mind that Android 2.3.7 and below is known for having Problems with this kind of Wifi Networks.
+                        </div>
+                        <div class="mdl-card__actions mdl-card--border">
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="files/wificat_andorid_signed.apk">
+                                Download
+                            </a>
+                        </div>
+                        <div class="mdl-card__menu">
+                            <a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" href="files/wificat_andorid_signed.apk">
+                                <i class="material-icons">cloud_download</i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="scroll-tab-ios">
+            <div class="page-content">
+                <div class="mdl-grid">
+                    <div class="ios-card-wide dl-card-wide mdl-card mdl-shadow--2dp">
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">Download for iOS</h2>
+                        </div>
+                        <div class="mdl-card__supporting-text">
+                            Download the Apple mobileconfig for iOS 8 and above.<br/>
+                            Please use manual installation for iOS 7 and blow.
+                        </div>
+                        <div class="mdl-card__actions mdl-card--border">
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="files/wifi_profile_signed.mobileconfig">
+                                Download
+                            </a>
+                        </div>
+                        <div class="mdl-card__menu">
+                            <a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" href="files/wifi_profile_signed.mobileconfig">
+                                <i class="material-icons">cloud_download</i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="scroll-tab-macos">
+            <div class="page-content">
+                <div class="mdl-grid">
+                    <div class="macos-card-wide dl-card-wide mdl-card mdl-shadow--2dp">
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">Download for macOS</h2>
+                        </div>
+                        <div class="mdl-card__supporting-text">
+                            Download the Apple mobileconfig for macOS
+                        </div>
+                        <div class="mdl-card__actions mdl-card--border">
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="files/wifi_profile_signed.mobileconfig">
+                                Download
+                            </a>
+                        </div>
+                        <div class="mdl-card__menu">
+                            <a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" href="files/wifi_profile_signed.mobileconfig">
+                                <i class="material-icons">cloud_download</i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="scroll-tab-manual">
+            <div class="page-content">
+                <div class="mdl-grid">
+                    <div class="manual-card-wide dl-card-wide mdl-card mdl-shadow--2dp" id="welcome">
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">Welcome to WifiCAT</h2>
+                        </div>
+                        <div class="mdl-card__supporting-text">
+                            Please select the Tab for your OS or set it up manually using the values below.
+                        </div>
+                        <div class="mdl-card__menu">
+                            <a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                                <i class="material-icons">wifi</i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="mdl-grid">
+                    <div class="manual-card-wide dl-card-wide mdl-card mdl-shadow--2dp">
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">Set it up manually</h2>
+                        </div>
+                        <div class="mdl-card__supporting-text" style="overflow-x: auto !important;">
+                            <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                                <thead>
+                                <tr>
+                                    <th class="mdl-data-table__cell--non-numeric">Configuration Option</th>
+                                    <th class="mdl-data-table__cell--non-numeric">Required Value</th>
+                                    <th class="mdl-data-table__cell--non-numeric">Additional Information</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">SSID</td>
+                                    <td class="mdl-data-table__cell--non-numeric">sample-ssid</td>
+                                    <td class="mdl-data-table__cell--non-numeric">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">Authenification Method</td>
+                                    <td class="mdl-data-table__cell--non-numeric">PEAP</td>
+                                    <td class="mdl-data-table__cell--non-numeric">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">Inner Authenification Method or Phase2 Method</td>
+                                    <td class="mdl-data-table__cell--non-numeric">MSCHAPv2</td>
+                                    <td class="mdl-data-table__cell--non-numeric">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">Identity</td>
+                                    <td class="mdl-data-table__cell--non-numeric"><i>username</i></td>
+                                    <td class="mdl-data-table__cell--non-numeric">Your username to Login</td>
+                                </tr>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">Password</td>
+                                    <td class="mdl-data-table__cell--non-numeric"><i>password</i></td>
+                                    <td class="mdl-data-table__cell--non-numeric">The corresponding Password</td>
+                                </tr>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">Anonymous Identity</td>
+                                    <td class="mdl-data-table__cell--non-numeric">anonymous</td>
+                                    <td class="mdl-data-table__cell--non-numeric">Or any other <b>nonexistent</b> username</td>
+                                </tr>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">Client Certificate</td>
+                                    <td class="mdl-data-table__cell--non-numeric"><i>your certificate</i></td>
+                                    <td class="mdl-data-table__cell--non-numeric">if you got an client certificate to Login please use this</td>
+                                </tr>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">CA Certificate</td>
+                                    <td class="mdl-data-table__cell--non-numeric"><i>ca certificate</i></td>
+                                    <td class="mdl-data-table__cell--non-numeric">
+                                        <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" href="/files/ca.crt">
+                                        Download CA <i class="material-icons">file_download</i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">Subject Alternate Name Match</td>
+                                    <td class="mdl-data-table__cell--non-numeric">//</td>
+                                    <td class="mdl-data-table__cell--non-numeric">optional for security</td>
+                                </tr>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">DNS Suffix Match</td>
+                                    <td class="mdl-data-table__cell--non-numeric">host.example.com</td>
+                                    <td class="mdl-data-table__cell--non-numeric">optional for Security</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mdl-card__menu">
+                            <a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                                <i class="material-icons">security</i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="scroll-tab-help">
+            <div class="page-content">
+                <div class="mdl-grid">
+                    <div class="mail-card-square card-square mdl-card mdl-shadow--2dp">
+                        <div class="mdl-card__title mdl-card--expand">
+                            <h2 class="mdl-card__title-text mdl-color-text--black">Mail</h2>
+                        </div>
+                        <div class="mdl-card__supporting-text">
+                            Send an E-Mail to Support
+                        </div>
+                        <div class="mdl-card__actions mdl-card--border">
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="mailto:support@example.com">
+                                support@example.com
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="scroll-tab-imprint">
+            <div class="page-content">
+                <div class="mdl-grid">
+                    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">Welcome</h2>
+                        </div>
+                        <div class="mdl-card__supporting-text">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Mauris sagittis pellentesque lacus eleifend lacinia...
+                        </div>
+                        <div class="mdl-card__actions mdl-card--border">
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                                Get Started
+                            </a>
+                        </div>
+                        <div class="mdl-card__menu">
+                            <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                                <i class="material-icons">share</i>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <footer class="mdl-mini-footer">
+        <div class="mdl-mini-footer__left-section">
+            <div class="mdl-logo">Wifi Configuration Assistant</div>
+            <ul class="mdl-mini-footer__link-list">
+                <li><a href="#" id="helplink">Help</a></li>
+                <li><a href="#" id="imprintlink">Privacy & Terms</a></li>
+            </ul>
+        </div>
+    </footer>
+</div>
+<script src="jsclient.js"></script>
+<script>
+    $(".mdl-layout__tab").click(function () {
+
+    });
+    $("#helplink").click(function () {
+        $(".is-active").each(function (i) {
+            $(this).removeClass("is-active");
+        });
+        $("#scroll-tab-help").addClass("is-active");
+    });
+    $("#imprintlink").click(function () {
+        $(".is-active").each(function (i) {
+            $(this).removeClass("is-active");
+        });
+        $("#scroll-tab-imprint").addClass("is-active");
+    });
+
+$(document).ready(function () {
+    $(".is-active").each(function (i) {
+        $(this).removeClass("is-active");
+    });
+    switch (jscd.os) {
+        case "Windows 10":
+        case "Windows 8.1":
+        case "Windows 8":
+        case "Windows 7":
+        case "Windows Vista":
+            $("#scroll-tab-windows").addClass("is-active");
+            break;
+        case "Android":
+            $("#scroll-tab-android").addClass("is-active");
+            break;
+        case "Linux":
+            $("#scroll-tab-linux").addClass("is-active");
+            break;
+        case "iOS":
+            $("#scroll-tab-ios").addClass("is-active");
+            break;
+        case "Mac OS":
+        case "Mac OS X":
+            $("#scroll-tab-macos").addClass("is-active");
+            break;
+        default:
+            $("#scroll-tab-manual").addClass("is-active");
+    }
+    if(screen.availHeight < 1000){
+        $("footer").fadeOut();
+    }else{
+        $("footer").fadeIn();
+    }
+});
+$(window).resize(function () {
+    if(screen.availHeight < 1000){
+        $("footer").fadeOut();
+    }else{
+        $("footer").fadeIn();
+    }
+});
+$("#manual_button").click(function () {
+    $("#welcome").remove();
+})
+</script>
+</body>
+</html>
