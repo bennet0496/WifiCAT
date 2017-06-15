@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">WifiCAT</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_user">Username</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_instell_network">Install Network</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="footer_text">WifiCAT, © Bennet Becker 2017</string>
+    <string name="choose_cert">Choose Client Certifiate</string>
+    <string name="title_activity_settings">Settings</string>
+
+
+    <string name="msg_no_pin">Your device has no Security Method configured which is not allowed with this App and Network. Sorry ☹️</string>
+    <string name="msg_not_trusted">Your device is not eligible for use with this App and Network. Sorry ☹️</string>
+    <string name="msg_rooted_device">We detected your device is rooted. Due to security concerns this disallows the usage of this App and Wifi network. Sorry ☹️</string>
+    <string name="msg_snap">Oh Snap! 😨</string>
+    <string name="open_settings">Open Settings</string>
+    <string name="info">Info</string>
+    <string name="appinfo" />
+</resources>
