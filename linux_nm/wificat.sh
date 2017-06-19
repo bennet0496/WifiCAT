@@ -92,13 +92,11 @@ NM_VERSION=$(gdbus call --system --dest org.freedesktop.NetworkManager --object-
 --method org.freedesktop.DBus.Properties.Get "org.freedesktop.NetworkManager" "Version" | grep -Po "(?<=<').*(?='>)")
 
 #TODO: jump to wpa_supplicant generation!
-test $(echo 0.8$'\n'$NM_VERSION | sort -Vr | tail -n 1) != 0.8
 
-if $? || ! pgrep -f NetworkManager
+if test $(echo 0.8$'\n'$NM_VERSION | sort -Vr | tail -n 1) != 0.8 || ! pgrep -f NetworkManager > /dev/null
 then
     echo "Your NM version is not supported or no NM was found" 1>&2
     read -p "Should we generate a wpa_supplicant? [Y/n] " GENWPASUPP
-
 fi
 
 # Get Connection Paths from DBus
