@@ -109,6 +109,10 @@ fi
 NM_VERSION=$(gdbus call --system --dest org.freedesktop.NetworkManager --object-path /org/freedesktop/NetworkManager \
 --method org.freedesktop.DBus.Properties.Get "org.freedesktop.NetworkManager" "Version" | grep -Po "(?<=<').*(?='>)")
 
+# Save CA cert
+mkdir -p ${HOME}/.cat_installer || true
+echo "$CA_CERT" > ${HOME}/.cat_installer/${SSID}.ca.pem
+
 # Generate WPA Supplicant Config
 if test $(echo 0.8$'\n'${NM_VERSION} | sort -Vr | tail -n 1) != 0.8 || ! pgrep -f NetworkManager > /dev/null
 then
@@ -211,7 +215,7 @@ gdbus call --system --dest org.freedesktop.NetworkManager --object-path ${NM_SET
             "id": <"'${SSID}'">
         },
         "802-11-wireless":{
-            "ssid": <b"test">,
+            "ssid": <b"'${SSID}'">,
             "security": <"802-11-wireless-security">
         },
         "802-11-wireless-security":{
@@ -223,7 +227,7 @@ gdbus call --system --dest org.freedesktop.NetworkManager --object-path ${NM_SET
         "802-1x": {
             "eap": <["'${EAP_METHOD}'"]>,
             "identity": <"'${USERN}'">,
-            "ca-cert": <[byte '$(openssl x509 -in <(echo "$CA_CERT") -inform pem -outform der | hexdump -ve '1/1 "0x%.2x,"'| head -c-1)']>,
+            "ca-cert": <b"'${HOME}'"/.cat_installer/"'${SSID}'".ca.pem'">,
             '$(test ${NM_VERSION} = 0.8 && echo '"subject-match":<"'${SUBJ_ALT_MATCH}'">' || \
                                          echo '"altsubject-matches":<["'${SUBJ_ALT_MATCH}'"]>')',
             "password": <"'${PASSWORD}'">,
