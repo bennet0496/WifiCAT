@@ -227,7 +227,7 @@ gdbus call --system --dest org.freedesktop.NetworkManager --object-path ${NM_SET
         "802-1x": {
             "eap": <["'${EAP_METHOD}'"]>,
             "identity": <"'${USERN}'">,
-            "ca-cert": <b"'${HOME}'"/.cat_installer/"'${SSID}'".ca.pem'">,
+            "ca-cert": <b"file://'${HOME}'"/.cat_installer/"'${SSID}'".ca.pem'$'\0x00''">,
             '$(test ${NM_VERSION} = 0.8 && echo '"subject-match":<"'${SUBJ_ALT_MATCH}'">' || \
                                          echo '"altsubject-matches":<["'${SUBJ_ALT_MATCH}'"]>')',
             "password": <"'${PASSWORD}'">,
