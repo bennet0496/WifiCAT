@@ -308,12 +308,12 @@ public class LoginWifiNetworkActivity extends AppCompatActivity implements Loade
 
             if (success) {
                 alertDialogBuilder.setTitle("Done");
-                alertDialogBuilder.setMessage("Network added successfully. Do you want to uninstall the now?");
+                alertDialogBuilder.setMessage("Network added successfully. Do you want to uninstall the App now?");
                 alertDialogBuilder.setPositiveButton("Yes", uninstaller);
                 alertDialogBuilder.setNegativeButton("No",dismiss);
             }else{
                 alertDialogBuilder.setTitle("Done");
-                alertDialogBuilder.setMessage("Network added, but it seams the Network is not connecting");
+                alertDialogBuilder.setMessage("Network added, but it seems the Network is not connecting");
                 alertDialogBuilder.setPositiveButton("Try again", dismiss);
                 alertDialogBuilder.setNegativeButton("Close", exit);
                 alertDialogBuilder.setNeutralButton("Uninstall App", uninstaller);
