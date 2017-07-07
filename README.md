@@ -61,7 +61,6 @@ These files are provided by 3rd-parties and licensed differently as the source c
 
   - `webpage/src/jquery.min.js` from JQuery is provided by the JS Foundation under MIT License
   - `webpage/src/material{,.min}.{js,css,map}` from Material Design Lite is provided by Google under an Apache-2 license
-  - `webpage/src/files/dotNetFx40_Full_x86_x64.exe` is the offical .NET Framework 4.0 Installer by Microsoft
   - `webpage/src/jsclient.js` by Christian Ludwig (https://stackoverflow.com/questions/9514179/how-to-find-the-operating-system-version-using-javascript/18706818#18706818)
   - The Windows Tool uses the [Managed Wifi API](https://managedwifi.codeplex.com/) by [ikonst](https://www.codeplex.com/site/users/view/ikonst)
 
