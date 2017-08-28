@@ -1,1 +1,6 @@
-material([^.]*)\.(js|css|map) linguist-vendored
+material.css linguist-vendored
+material.js linguist-vendored
+material.map linguist-vendored
+material.min.css linguist-vendored
+material.min.js linguist-vendored
+material.min.map linguist-vendored
