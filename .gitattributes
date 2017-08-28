@@ -1,6 +1,8 @@
 material.css linguist-vendored
 material.js linguist-vendored
 material.map linguist-vendored
-material.min.css linguist-generated=true
-material.min.js linguist-generated=true
-material.min.map linguist-generated=true
+material.min.css linguist-vendored
+material.min.js linguist-vendored
+material.min.map linguist-vendored
+jquery.min.js linguist-vendored
+jquery.js linguist-vendored
