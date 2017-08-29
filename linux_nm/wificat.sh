@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/bash -e
 
-# Wifi Configuration Assist Tool for Linux (Python Payload)
+# Wifi Configuration Assist Tool for Linux
 # Copyright (C) 2017 Bennet Becker <bennet@becker-dd.de>
 #
 # This program is free software: you can redistribute it and/or modify
@@ -16,50 +16,9 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-
-SSID=sample-ssid
-
-SSID_TO_DELETE=sample-unsecure-ssid
-
-PAIRWISE=ccmp
-GROUP_CIPHER=ccmp
-ANON_ID=anonymous
-SUBJ_ALT_MATCH=test.example.com
-CA_CERT="
------BEGIN CERTIFICATE-----
-MIIDnzCCAoegAwIBAgIBJjANBgkqhkiG9w0BAQUFADBxMQswCQYDVQQGEwJERTEc
-MBoGA1UEChMTRGV1dHNjaGUgVGVsZWtvbSBBRzEfMB0GA1UECxMWVC1UZWxlU2Vj
-IFRydXN0IENlbnRlcjEjMCEGA1UEAxMaRGV1dHNjaGUgVGVsZWtvbSBSb290IENB
-IDIwHhcNOTkwNzA5MTIxMTAwWhcNMTkwNzA5MjM1OTAwWjBxMQswCQYDVQQGEwJE
-RTEcMBoGA1UEChMTRGV1dHNjaGUgVGVsZWtvbSBBRzEfMB0GA1UECxMWVC1UZWxl
-U2VjIFRydXN0IENlbnRlcjEjMCEGA1UEAxMaRGV1dHNjaGUgVGVsZWtvbSBSb290
-IENBIDIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCrC6M14IspFLEU
-ha88EOQ5bzVdSq7d6mGNlUn0b2SjGmBmpKlAIoTZ1KXleJMOaAGtuU1cOs7TuKhC
-QN/Po7qCWWqSG6wcmtoIKyUn+WkjR/Hg6yx6m/UTAtB+NHzCnjwAWav12gz1Mjwr
-rFDa1sPeg5TKqAyZMg4ISFZbavva4VhYAUlfckE8FQYBjl2tqriTtM2e66foai1S
-NNs671x1Udrb8zH57nGYMsRUFUQM+ZtV7a3fGAigo4aKSe5TBY8ZTNXeWHmb0moc
-QqvF1afPaA+W5OFhmHZhyJF81j4A4pFQh+GdCuatl9Idxjp9y7zaAzTVjlsB9WoH
-txa2bkp/AgMBAAGjQjBAMB0GA1UdDgQWBBQxw3kbuvVT1xfgiXotF2wKsyudMzAP
-BgNVHRMECDAGAQH/AgEFMA4GA1UdDwEB/wQEAwIBBjANBgkqhkiG9w0BAQUFAAOC
-AQEAlGRZrTlk5ynrE/5aw4sTV8gEJPB0d8Bg42f76Ymmg7+Wgnxu1MM9756Abrsp
-tJh6sTtU6zkXR34ajgv8HzFZMQSyzhfzLMdiNlXiItiJVbSYSKpk+tYcNthEeFpa
-IzpXl/V6ME+un2pMSyuOoAPjPuCp1NJ70rOo4nI8rZ7/gFnkm0W09juwzTkZmDLl
-6iFhkOQxIY40sfcvNUqFENrnijchvllj4PKFiDFT1FQUhXB59C4Gdyd1Lx+4ivn+
-xbrYNuSD7Odlt79jWvNGr4GUN9RBjNYj1h7P9WgbRGOiWrqnNVmh5XAFmw4jV5mU
-Cm26OWMohpLzGITY+9HPBVZkVw==
------END CERTIFICATE-----
-"
-DNS_SUFF_MATCH=sample-ssid.mpipks-dresden.mpg.de
-
-USE_CLIENT_CERT=0
-
-#Valid methods are: "leap", "md5", "tls", "peap", "ttls", "pwd", and "fast"
-EAP_METHOD=peap
-#NIY
-USE_EAP_PIN=0
-#"md5", "mschapv2", "otp", "gtc", and "tls"
-PHASE2_METHOD_EAP=mschapv2
-
+test -z "$DEBUG" && exec 2> /dev/null
+test -n "$TRACE" && set -x
+source config
 
 #Make sure we are running in bash
 if test -z "$BASH"
@@ -68,7 +27,7 @@ then
     exit 0
 fi
 
-if test -n "$(which zenity)"
+if test -n "$(which zenity)" && test "$FORCERL" != "true"
 then
     zenity --title="Wifi Configuration Assistant" --info --text="Welcome to WifiCAT. This will configure the Network $SSID automatically\n\nThe following dialogs will ask for your Credentials to install the Network."
     LOGIN=$(zenity --title="$SSID Login" --forms --text="Your Wifi Login" --add-entry=Username \
@@ -82,7 +41,7 @@ then
         CLIENTCERT=$(zenity --title="Choose Client Certificate" --file-selection \
         --file-filter="Certificate | *.pem *.crt *.cert *.der" --file-filter="All Files | *.*")
     fi
-elif test -n "$(which kdialog)"
+elif test -n "$(which kdialog)" && test "$FORCERL" != "true"
 then
     kdialog --title="Wifi Configuration Assistant" --msgbox "Welcome to WifiCAT. This will configure the Network $SSID automatically\n\nThe following dialogs will ask for your Credentials to install the Network."
 
@@ -92,7 +51,7 @@ then
     then
         CLIENTCERT=$(kdialog --getopenfilename $HOME "*.pem *.crt *.cert *.der | Certificate files")
     fi
-elif test -n "$(which dialog)"
+elif test -n "$(which dialog)" && test "$FORCERL" != "true"
 then
     dialog --backtitle "WifiCAT" --title "Wifi Configuration Assistant" \
     --msgbox "Welcome to WifiCAT. This will configure the Network $SSID automatically\n\nThe following dialogs will ask for your Credentials to install the Network." 0 0
@@ -105,18 +64,26 @@ else
     read -p "Password (not echoed): " -s PASSWORD
 fi
 
+test $USERN || exit 1
+test $PASSWORD || exit 1
 
 NM_VERSION=$(gdbus call --system --dest org.freedesktop.NetworkManager --object-path /org/freedesktop/NetworkManager \
 --method org.freedesktop.DBus.Properties.Get "org.freedesktop.NetworkManager" "Version" | grep -Po "(?<=<').*(?='>)")
 
 # Save CA cert
+test "$DEBUG" && echo Installing Certificate
 mkdir -p ${HOME}/.cat_installer || true
 echo "$CA_CERT" > ${HOME}/.cat_installer/${SSID}.ca.pem
 
 # Generate WPA Supplicant Config
-if test $(echo 0.8$'\n'${NM_VERSION} | sort -Vr | tail -n 1) != 0.8 || ! pgrep -f NetworkManager > /dev/null
+test "$DEBUG" && echo Checking for NM
+if test "$(echo 0.8$'\n'${NM_VERSION} | sort -Vr | tail -n 1)" != "0.8" || ! pgrep -f NetworkManager > /dev/null
 then
-    if test -n "$(which zenity)"
+    test "$DEBUG" && echo Faild finding suitable NM:
+    test "$DEBUG" && echo - NM Ver: $NM_VERSION
+    test "$DEBUG" && echo - PIDs: $(pgrep -f NetworkManager | tr '\n' ' ')
+
+    if test -n "$(which zenity)" && test "$FORCERL" != "true"
     then
         if zenity --title="Wifi Configuration Assistant" --question \
         --text="Your NM version is not supported or no NM was found\n\nShould we generate a wpa_supplicant?"
@@ -124,14 +91,14 @@ then
             GENWPASUPP=yes
         fi
 
-    elif test -n "$(which kdialog)"
+    elif test -n "$(which kdialog)" && test "$FORCERL" != "true"
     then
         if kdialog --title="Wifi Configuration Assistant" \
         --yesno "Your NM version is not supported or no NM was found\n\nShould we generate a wpa_supplicant?"
         then
             GENWPASUPP=yes
         fi
-    elif test -n "$(which dialog)"
+    elif test -n "$(which dialog)" && test "$FORCERL" != "true"
     then
         if dialog --backtitle "WifiCAT" --title "Wifi Configuration Assistant" \
         --yesno "Your NM version is not supported or no NM was found\n\nShould we generate a wpa_supplicant?" 0 0
@@ -171,7 +138,7 @@ EOF
 fi
 
 # Get Connection Paths from DBus
-if test ${NM_VERSION} = 0.8
+if test "${NM_VERSION}" = "0.8"
 then
     NM_SETTINGS_OBJ=/org/freedesktop/NetworkManagerSettings
     NM_SETTINGS_INTERFACE=org.freedesktop.NetworkManagerSettings
@@ -180,10 +147,14 @@ else
     NM_SETTINGS_INTERFACE=org.freedesktop.NetworkManager.Settings
 fi
 
+test "$DEBUG" && echo NM_SETTINGS_OBJ=$NM_SETTINGS_OBJ
+test "$DEBUG" && echo NM_SETTINGS_INTERFACE=$NM_SETTINGS_INTERFACE
+
 NM_CONNECTIONS=$(gdbus call --system  --dest org.freedesktop.NetworkManager \
     --object-path ${NM_SETTINGS_OBJ} --method ${NM_SETTINGS_INTERFACE}.ListConnections \
     | grep -Po "(?<=')[^,].*?(?=')")
 
+test "$DEBUG" && echo NM_CONNECTIONS=$NM_CONNECTIONS
 # Delete existing connection
 for conn in ${NM_CONNECTIONS}
 do
@@ -194,6 +165,7 @@ do
         conn_ssid=$(echo ${conn_info} | grep -Po "(?<='id': \<').*?(?='\>)")
         if test "${conn_ssid}" = "${SSID}" || test "${conn_ssid}" = "${SSID_TO_DELETE}"
         then
+	    test "$DEBUG" && echo "Deleting Profile ${conn} (${conn_info})"
             logger --id=$$ $(gdbus call --system  --dest org.freedesktop.NetworkManager --object-path ${conn}\
                                 --method org.freedesktop.NetworkManager.Settings.Connection.Delete || true) || true
             logger --id=$$ "Connection ${conn} deleted!" || true
@@ -202,20 +174,22 @@ do
 done
 
 # Add new connection
-uuid=$(cat /proc/sys/kernel/random/uuid)
-
+test "$DEBUG" && echo Adding new Connection
 #BUG: ca-cert not shown in nm-applet
-gdbus call --system --dest org.freedesktop.NetworkManager --object-path ${NM_SETTINGS_OBJ} \
+test "$DEBUG" && echo -n ${SSID} | xxd
+re=$(gdbus call --system --dest org.freedesktop.NetworkManager --object-path ${NM_SETTINGS_OBJ} \
 --method ${NM_SETTINGS_INTERFACE}.AddConnection \
     '{
         "connection":{
             "type": <"802-11-wireless">,
             "uuid": <"'$(cat /proc/sys/kernel/random/uuid)'">,
             "permissions": <["user:'${USER}'"]>,
-            "id": <"'${SSID}'">
+            "id": <"'${SSID}'">,
+	    "interface-name": <"'$(ls /sys/class/ieee80211/phy0/device/net/)'">
         },
         "802-11-wireless":{
-            "ssid": <b"'${SSID}'">,
+	    "ssid": <[byte '$(echo -n ${SSID} | hexdump -ve '1/1 "0x%.2x,"' | head -c-1 )']>,
+	    "mode": <"infrastructure">,
             "security": <"802-11-wireless-security">
         },
         "802-11-wireless-security":{
@@ -228,7 +202,7 @@ gdbus call --system --dest org.freedesktop.NetworkManager --object-path ${NM_SET
             "eap": <["'${EAP_METHOD}'"]>,
             "identity": <"'${USERN}'">,
             "ca-cert": <b"file://'$(echo ${HOME}/.cat_installer/${SSID}.ca.pem$'\0x00')'">,
-            '$(test ${NM_VERSION} = 0.8 && echo '"subject-match":<"'${SUBJ_ALT_MATCH}'">' || \
+            '$(test "${NM_VERSION}" = "0.8" && echo '"subject-match":<"'${SUBJ_ALT_MATCH}'">' || \
                                          echo '"altsubject-matches":<["'${SUBJ_ALT_MATCH}'"]>')',
             "password": <"'${PASSWORD}'">,
             "phase2-auth": <"'${PHASE2_METHOD_EAP}'">,
@@ -236,8 +210,9 @@ gdbus call --system --dest org.freedesktop.NetworkManager --object-path ${NM_SET
         },
         "ipv4": { "method": <"auto"> },
         "ipv6": { "method": <"auto"> }
-    }'
+}')
 
+test "$DEBUG" && echo " -> $re"
 
 for active_conn in $(gdbus call --system --dest org.freedesktop.NetworkManager --object-path \
                     /org/freedesktop/NetworkManager --method org.freedesktop.DBus.Properties.Get \
@@ -252,7 +227,7 @@ do
     conn_dev=$(gdbus call --system  --dest org.freedesktop.NetworkManager --object-path ${active_conn} \
                 --method org.freedesktop.DBus.Properties.Get "org.freedesktop.NetworkManager.Connection.Active" "Devices" \
                 | grep -Po "(?<=').*?(?=')" | head -n 1)
-    if test ${conn_type} = 802-11-wireless && test ${conn_id} = ${SSID_TO_DELETE}
+    if test "${conn_type}" = "802-11-wireless" && test "${conn_id}" = "${SSID_TO_DELETE}"
     then
         gdbus call --system --dest org.freedesktop.NetworkManager --object-path \
         /org/freedesktop/NetworkManager --method org.freedesktop.NetworkManager.DeactivateConnection ${active_conn} \

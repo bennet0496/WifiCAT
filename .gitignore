@@ -1,4 +1,5 @@
 *.mobileconfig
+linux_nm/config
 # ---> Android
 # Built application files
 *.apk
@@ -106,3 +107,4 @@ crashlytics-build.properties
 .externalNativeBuild
 
 android/app/wificat.keystore
+
