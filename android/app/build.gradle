@@ -1,14 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    signingConfigs {
-        config {
-            keyAlias '1'
-            keyPassword 'eicheingei9IdooJ0eraequei5ahcief'
-            storeFile file('wificat.keystore')
-            storePassword 'eicheingei9IdooJ0eraequei5ahcief'
-        }
-    }
+    //signingConfigs {
+    //    config {
+    //        keyAlias '1'
+    //        keyPassword 'eicheingei9IdooJ0eraequei5ahcief'
+    //        storeFile file('wificat.keystore')
+    //        storePassword 'eicheingei9IdooJ0eraequei5ahcief'
+    //    }
+    //}
     compileSdkVersion 25
     buildToolsVersion "25.0.3"
     defaultConfig {
